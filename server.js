@@ -3,6 +3,13 @@ var net = require('net');
 var server = net.createServer(function(connectionListener) {
 	console.log("connected")
 	
+	console.log(this.maxConnections);
+	
+	// set maxConnections
+	this.maxConnections = 4;
+	
+	console.log(this.maxConnections);
+	
 	console.log(this.address());
 	
 	this.getConnections(function(err, count){
@@ -28,7 +35,7 @@ server.on('data', function(data){
 
 // listen
 
-server.listen(8181, function(){
+server.listen(8181, '127.0.0.1', 12, function(){
 	console.log('server is listening');
 });
 
